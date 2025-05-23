@@ -60,11 +60,6 @@
 			<artifactId>notification-logging-contract</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>letunov</groupId>
-			<artifactId>contract-api</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>
