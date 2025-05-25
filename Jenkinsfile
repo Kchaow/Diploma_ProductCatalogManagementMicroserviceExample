@@ -1,5 +1,8 @@
 pipeline {
 	agent any
+	parameters {
+        booleanParam(name: 'skip_build', defaultValue: false, description: 'Поставить true, чтобы не проводить сборку проекта')
+    }
 
     environment {
 		MAVEN_HOME = '/usr/share/maven'
@@ -11,6 +14,7 @@ pipeline {
     }
 
     stages {
+	    when { expression { params.skip_build != true } }
 		stage('Checkout Code') {
 			steps {
 				git branch: "${GIT_BRANCH}", url: "${GIT_REPO_URL}"
