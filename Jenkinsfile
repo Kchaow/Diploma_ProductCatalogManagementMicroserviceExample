@@ -14,7 +14,6 @@ pipeline {
     }
 
     stages {
-	    when { expression { params.skip_build != true } }
 		stage('Checkout Code') {
 			steps {
 				git branch: "${GIT_BRANCH}", url: "${GIT_REPO_URL}"
@@ -22,6 +21,7 @@ pipeline {
         }
 
         stage('Build with Maven') {
+		when { expression { params.skip_build != true } }
 			steps {
 				sh '${MAVEN_HOME}/bin/mvn clean package'
             }
