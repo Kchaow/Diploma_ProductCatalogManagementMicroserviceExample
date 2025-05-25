@@ -2,6 +2,8 @@ package letunov.productcatalogmanagement.adapter.rest;
 
 import letunov.contract.ContractProvider;
 import letunov.contracts.GetItemsContract;
+import letunov.contracts.SendOrderDataContract;
+import letunov.contracts.dto.CreateOrderDto;
 import letunov.contracts.dto.ItemDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/catalog")
 @ContractProvider
-public class ProductCatalogManagementController implements GetItemsContract {
+public class ProductCatalogManagementController implements GetItemsContract, SendOrderDataContract {
     @Override
     @GetMapping("/items")
     public ResponseEntity<List<ItemDto>> getItems() {
@@ -23,5 +25,10 @@ public class ProductCatalogManagementController implements GetItemsContract {
                 new ItemDto("toys", true)
         );
         return ResponseEntity.ok(items);
+    }
+
+    @Override
+    public ResponseEntity<Void> sendOrderData(CreateOrderDto dto) {
+        return null;
     }
 }
